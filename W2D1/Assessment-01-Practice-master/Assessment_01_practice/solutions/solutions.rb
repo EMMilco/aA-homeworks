@@ -1,8 +1,9 @@
+
 class Array
   def my_inject(accumulator = nil, &block)
     i = 0
 
-    unless accumulator
+    if accumulator.nil?
       accumulator = self.first
       i += 1
     end
@@ -24,7 +25,7 @@ def primes(count)
   primes = []
 
   i = 2
-  until primes.count == count
+  until primes.count >= count
     primes << i if is_prime?(i)
 
     i += 1
@@ -65,13 +66,13 @@ class String
     symm_subs = []
 
     length.times do |start_pos|
-      (1..(length - start_pos)).each do |len|
-        substr = self[start_pos..(start_pos + len)]
+      (2..(length - start_pos)).each do |len|
+        substr = self[start_pos...(start_pos + len)]
         symm_subs << substr if substr == substr.reverse
       end
     end
 
-    symm_subs.uniq.select { |sub| sub.length > 1 }
+    symm_subs
   end
 end
 
@@ -84,10 +85,12 @@ class Array
 
     return self if count <= 1
 
-    Array.merge(
-      self.take(count / 2).merge_sort(&prc),
-      self.drop(count / 2).merge_sort(&prc), &prc
-    )
+    midpoint = count / 2
+    sorted_left = self.take(midpoint).merge_sort(&prc)
+    sorted_right = self.drop(midpoint).merge_sort(&prc)
+
+    Array.merge(sorted_left, sorted_right, &prc)
+
   end
 
   private
@@ -95,13 +98,13 @@ class Array
     merged = []
 
     until left.empty? || right.empty?
-      case prc.call(left, right)
-      when 1
-        merged << right.shift
-      when 0
-        merged << left.shift
+      case prc.call(left.first, right.first)
       when -1
         merged << left.shift
+      when 0
+        merged << left.shift
+      when 1
+        merged << right.shift
       end
     end
 
