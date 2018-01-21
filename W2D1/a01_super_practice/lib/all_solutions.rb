@@ -117,7 +117,7 @@ class Array
   def dups
     results = Hash.new { Array.new }
     self.each.with_index { |el, i| results[el] += [i] }
-    results
+    results.select { |k,v| v.length > 1 }
   end
 end
 
@@ -555,12 +555,29 @@ class String
   # Only include substrings of length > 1.
 
   def symmetric_substrings
+    self.substrings.select { |sub| sub == sub.reverse }.map(&:join)
+  end
+
+  def substrings
+    subs = []
+    (2..self.length).each { |n| subs += self.chars.each_cons(n).to_a }
+    subs
   end
 end
 
 # Write a method that capitalizes each word in a string like a book title
 # Do not capitalize words like 'a', 'and', 'of', 'over' or 'the'
 def titleize(title)
+  words = title.split
+  words.map! do |word|
+    if %w(a and of over the).include?(word)
+      word
+    else
+      word.capitalize
+    end
+  end
+  words.first.capitalize!
+  words.join(" ")
 end
 
 class Array
@@ -574,6 +591,12 @@ class Array
   #   [0, 1] before [0, 2] (then smaller second elements come first)
 
   def two_sum
-
+    results = []
+    self.each_index do |i|
+      self.each_index do |j|
+        results << [i, j] if i < j && self[i] + self[j] == 0
+      end
+    end
+    results
   end
 end
