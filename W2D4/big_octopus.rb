@@ -2,7 +2,7 @@ def sluggish_octopus(arr)
   result = ""
   arr.each_index do |i|
     arr.each_index do |j|
-      result = arr[i] if arr[i] >= arr[j]
+      result = arr[i] if arr[i].length >= arr[j].length
     end
   end
   result
