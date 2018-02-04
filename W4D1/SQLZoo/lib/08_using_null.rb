@@ -28,7 +28,9 @@ def all_teachers_join
   # Use a type of JOIN that will list all teachers and their department,
   # even if the department in NULL/nil.
   execute(<<-SQL)
-    select
+    select teachers.name, depts.name
+    from teachers
+    left join depts on depts.id = teachers.dept_id
   SQL
 end
 
@@ -37,6 +39,9 @@ def all_depts_join
   # NB: you can avoid RIGHT OUTER JOIN (and just use LEFT) by swapping
   # the FROM and JOIN tables.
   execute(<<-SQL)
+  select teachers.name, depts.name
+  from depts
+  left join teachers on depts.id = teachers.dept_id
   SQL
 end
 
@@ -45,6 +50,8 @@ def teachers_and_mobiles
   # 444 2266' if no number is given. Show teacher name and mobile
   # #number or '07986 444 2266'
   execute(<<-SQL)
+  select name, COALESCE(teachers.mobile, '07986 444 2266') as mobile
+  from teachers
   SQL
 end
 

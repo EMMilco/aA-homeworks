@@ -152,6 +152,8 @@ def expensive_tastes
   # subquery. Next, JOIN the styles table to this result and use aggregates to
   # determine the average price per track.
   execute(<<-SQL)
+    select styles.style
+    
 
   SQL
 end
