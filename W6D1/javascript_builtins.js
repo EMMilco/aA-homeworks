@@ -151,7 +151,7 @@ Math.sign(x)
 
 
 
-NUMBER
+NUMBER PRIMITIVES
 
 // All numbers in Javascript are DOUBLES, i.e. double-precision
 // floating point numbers. Integer values are merely instances of the
@@ -172,3 +172,28 @@ REGULAR EXPRESSIONS
 
 // RegEx in Javascript follows the usual conventions, with the usual
 // literal construction and the usual flags (e.g. g, i).
+
+
+
+
+STRING PRIMITIVES
+
+str.charAt(index) => STRING
+// Takes an index and returns the character at that location. Example:
+// "lightning".charAt(2) => 'g'
+
+str.split(separator) => NEW ARRAY
+// Takes an optional separator argument and splits the string into
+// elements at each occurrence of the separator. If no argument is given,
+// splits the string into individual characters.
+
+String.fromCharCode(num) => STRING
+// Takes an integer and returns the character corresponding to it in
+// UTF-16.  Example:
+// String.fromCharCode(97) => 'c'
+
+str.charCodeAt(index) => NUMBER (UTF-16 CODE)
+// Takes an index and returns the UTF-16 code for the character at
+// the provided index. Example:
+// "lightning".charCodeAt(2) => 103
+// String.fromCharCode(103) => 'g'
