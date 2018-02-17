@@ -54,17 +54,17 @@ function isSubstring(string, sub) {
   string.includes(sub);
 }
 
-> function fizzBuzz(array) {
-    const fizzBuzzArr = [];
-    for(let i = 0; i < array.length; i++) {
-      if ((array[i] % 3 === 0) ^ (array[i] % 5 === 0)) {
-        fizzBuzzArr.push(array[i]);
-        }
+function fizzBuzz(array) {
+  const fizzBuzzArr = [];
+  for(let i = 0; i < array.length; i++) {
+    if ((array[i] % 3 === 0) ^ (array[i] % 5 === 0)) {
+      fizzBuzzArr.push(array[i]);
       }
-    return fizzBuzzArr;
     }
+  return fizzBuzzArr;
+}
 
-
+function
 
 
 
