@@ -71,6 +71,8 @@ arr.concat(a, ...) => NEW ARRAY
 // [1,2,3].concat([4,5]) => [1,2,3,4,5] ACCEPTS AND UNWRAPS ARRAY
 // [1,2,3].concat([4,5],6) => [1,2,3,4,5,6] ACCEPTS AND COMBINES ARRAYS WITH NON-ARRAYS
 // [1,2,3].concat([[4],5]) => [1,2,3,[4],5] DOES NOT RECURSE INTO NESTED ARRAYS
+// -- EASIEST WAY TO REMEMBER: It strips off the outermost array-layer of
+// -- each argument (if there is one), and lumps all the results onto arr.
 
 arr.slice(begin, [end]) => NEW ARRAY
 // with no arguments, returns shallow copy of arr
