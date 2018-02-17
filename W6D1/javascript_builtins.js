@@ -11,7 +11,7 @@ arr.forEach(callback) => undefined
 // element of the array in turn, returns undefined.
 // CALLBACK IS UNARY AND NEED NOT RETURN
 
-arr.map() => NEW ARRAY
+arr.map(callback) => NEW ARRAY
 // accepts a function as an argument, and returns a new array containing
 // the return value of each element when fed into the callback.
 // CALLBACK IS UNARY AND RETURNS A MAPPED COPY OF AN ELEMENT
