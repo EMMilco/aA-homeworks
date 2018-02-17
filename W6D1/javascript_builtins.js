@@ -185,7 +185,7 @@ str.charAt(index) => STRING
 str.split(separator) => NEW ARRAY
 // Takes an optional separator argument and splits the string into
 // elements at each occurrence of the separator. If no argument is given,
-// splits the string into individual characters.
+// dumps the entire string (as one element) into a new array.
 
 String.fromCharCode(num) => STRING
 // Takes an integer and returns the character corresponding to it in

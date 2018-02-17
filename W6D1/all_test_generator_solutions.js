@@ -53,7 +53,12 @@ Array.prototype.bubbleSort = function (func) {
 // the position of a letter in the array, you may use `Array#find_index`.
 
 function caesarCipher(str, shift) {
-
+  const result = [];
+  str.split("").forEach((el) => {
+    if (el === " ") { result.push(" "); }
+    else { result.push(String.fromCharCode((el.charCodeAt(0) - 96 + shift) % 26 + 96)); }
+  });
+  return result.join();
 }
 
 // Using recursion and the is_a? method,
