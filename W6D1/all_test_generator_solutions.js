@@ -188,29 +188,50 @@ Function.prototype.inherits = function (Parent) {
 
 function jumbleSort(str, alphabet = null) {
   if (alphabet) {
-    str.split("").sort((a,b) => {
-      return Math.sign(alphabet.indexOf(a) - alphabet.indexOf(b));
-    }).join();
+    return str.split("").sort((a,b) => {
+      return alphabet.indexOf(a) - alphabet.indexOf(b);
+    }).join("");
   }
-  return str.split("").sort().join();
+  return str.split("").sort().join("");
 }
 
 // Write a method that returns the median of elements in an array
 // If the length is even, return the average of the middle two elements
 
 Array.prototype.median = function () {
-
-}
+  const mid = this.length / 2;
+  if (this.length % 2 === 0) {
+    return (this[mid - 1] + this[mid]) / 2;
+  }
+  else {
+    return this[Math.trunc(mid)]; }
+};
 
 // Write an Array#merge_sort method; it should not modify the original array.
 
 Array.prototype.mergeSort = function (func) {
+  if (this.length <= 1) { return this; }
 
-}
+  const mid = Math.trunc(this.length / 2);
+  const left = this.slice(0,mid);
+  const right = this.slice(mid);
 
-Array.prototype.merge = function (arr, func) {
+  return left.mergeSort(func).merge(right.mergeSort(func));
+};
 
-}
+Array.prototype.merge = function (other, func) {
+  func = func || function (a,b) { return a - b; };
+  let results = [];
+
+  while (this.length > 0 && other.length > 0) {
+    if (func(this[this.length - 1], other[other.length - 1]) > 0) {
+      results.push(other.shift());
+    } else {
+      results.push(this.shift());
+    }
+  }
+  return results.concat(this, other);
+};
 
 // write Function.prototype.myBind.
 Function.prototype.myBind = function (context, ...bindArguments) {
@@ -228,61 +249,95 @@ Function.prototype.myCurry = function (numArgs) {
 };
 
 Array.prototype.myEach = function (func) {
-
-}
+  for (var i = 0; i < this.length; i++) {
+    func(this[i]);
+  }
+};
 
 Array.prototype.myEvery = function (func) {
-
-}
+  for (var i = 0; i < this.length; i++) {
+    if (func(this[i]) === false) { return false; }
+  }
+  return true;
+};
 
 Array.prototype.myFilter = function (func) {
-
-}
+  const results = [];
+  for (var i = 0; i < this.length; i++) {
+    if (func(this[i]) === true) { results.push(this[i]); }
+  }
+  return results;
+};
 
 // write myFind(array, callback). It should return the first element for which
 // callback returns true, or undefined if none is found.
 
-Array.prototype.myFind = function (array, callback) {
-
+Array.prototype.myFind = function (callback) {
+  for (var i = 0; i < this.length; i++) {
+    if (callback(this[i])) {return this[i];}
+  }
+  return -1;
 };
 
 Array.prototype.flatten = function () {
-
-}
+  if (this.every((el) => { return Array.isArray(el) === false; })) {
+    return this;
+  } else {
+    return this.reduce((acc, el) => acc.concat(el).flatten(), []);
+  }
+};
 
 // Monkey patch the Array class and add a my_inject method. If my_inject receives
 // no argument, then use the first element of the array as the default accumulator.
 
 Array.prototype.myReduce = function (func, acc) {
-
-}
+  const arr = this.slice();
+  let result = acc || arr.shift();
+  for (var i = 0; i < arr.length; i++) {
+    result = func(result, arr[i]);
+  }
+  return result;
+};
 
 Array.prototype.myJoin = function (separator) {
-
-}
+  return this.reduce((acc, el) => acc + separator + el.toString());
+};
 
 Array.prototype.reject = function (func) {
-
-}
+  return this.filter((el) => func(el) === false);
+};
 
 Array.prototype.myReverse = function () {
-
-}
+  const result = [];
+  for (var i = 0; i < this.length; i++) {
+    result.push(this.pop());
+  }
+  return this.concat(result);
+};
 
 Array.prototype.rotate = function (num) {
-
-}
+  for (var i = 0; i < num; i++) {
+    this.push(this.pop());
+  }
+};
 
 // write String.prototype.mySlice. It should take a start index and an
 // (optional) end index.
 
-String.prototype.mySlice = function () {
-
-}
+String.prototype.mySlice = function (start, end) {
+  const final = end || this.length;
+  const result = [];
+  for (var i = start; i < end; i++) {
+    result.push(this[i]);
+  }
+};
 
 Array.prototype.mySome = function (func) {
-
-}
+  this.forEach((el) => {
+    if (func(el)) {return true;}
+  });
+  return false;
+};
 
 // Write a recursive method that returns all of the permutations of an array
 
@@ -306,21 +361,44 @@ function piglatinify(sentence) {
 // prime_factorization(12) => [2,2,3]
 
 function primeFactorization(num) {
-
+  if (num === 2) { return num; }
+  for (var i = 2; i <= num; i++) {
+    if (num === i) { return num; }
+    if (num % i === 0) {return [i].concat(primeFactorization(num / i));}
+  }
 }
 
 // primes(num) returns an array of the first "num" primes.
 // You may wish to use an is_prime helper method.
 
 function primes(num) {
+  const result = [];
+  let i = 2;
+  while (result.length < num) {
+    if (isPrime(i)) { result.push(i); }
+    i++;
+  }
+
+  function isPrime(n) {
+    for (var j = 2; j < n; j++) {
+      if ( n % j === 0) { return false; }
+    }
+    return true;
+  }
+  return result;
 
 }
 
 // Write a monkey patch of quick sort that accepts a callback
 
 Array.prototype.quickSort = function (func) {
-
-}
+  func = func || function (a,b) { return a - b; };
+  if (this.length < 2) { return this; }
+  const pivot = this[0];
+  const left = this.slice(1).filter((el) => func(el, pivot) <= 0);
+  const right = this.slice(1).filter((el) => func(el, pivot) > 0);
+  return left.quickSort(func).concat(pivot).concat(right.quickSort(func));
+};
 
 // Returns an array of all the subwords of the string that appear in the
 // dictionary argument. The method does NOT return any duplicates.

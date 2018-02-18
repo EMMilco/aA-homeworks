@@ -181,7 +181,7 @@ REGULAR EXPRESSIONS
 
 
 
-STRING PRIMITIVES
+STRINGS
 
 str.charAt(index) => STRING
 // Takes an index and returns the character at that location. Example:
