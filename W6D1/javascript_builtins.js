@@ -11,9 +11,9 @@ arr.forEach(callback) => undefined
 // element of the array in turn, returns undefined.
 // CALLBACK IS UNARY AND NEED NOT RETURN
 
-// NOTE: There is no way to stop or break a forEach() loop other than by
+// NOTE: "There is no way to stop or break a forEach() loop other than by
 // throwing an exception. If you need such behavior, the forEach() method is
-// the wrong tool. Use a plain loop or for...of instead.
+// the wrong tool. Use a plain loop or for...of instead."
 
 arr.map(callback) => NEW ARRAY
 // accepts a function as an argument, and returns a new array containing

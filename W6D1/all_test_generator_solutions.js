@@ -333,9 +333,9 @@ String.prototype.mySlice = function (start, end) {
 };
 
 Array.prototype.mySome = function (func) {
-  this.forEach((el) => {
-    if (func(el)) {return true;}
-  });
+  for (var i = 0, len = this.length; i < len; i++) {
+    if (func(i)) { return true; }
+  }
   return false;
 };
 
