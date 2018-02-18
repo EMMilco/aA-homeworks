@@ -11,14 +11,19 @@ arr.forEach(callback) => undefined
 // element of the array in turn, returns undefined.
 // CALLBACK IS UNARY AND NEED NOT RETURN
 
+// NOTE: There is no way to stop or break a forEach() loop other than by
+// throwing an exception. If you need such behavior, the forEach() method is
+// the wrong tool. Use a plain loop or for...of instead.
+
 arr.map(callback) => NEW ARRAY
 // accepts a function as an argument, and returns a new array containing
 // the return value of each element when fed into the callback.
 // CALLBACK IS UNARY AND RETURNS A MAPPED COPY OF AN ELEMENT
 
 arr.every(callback) => BOOLEAN
-// accepts a function as an argument, and returns true only if every element in arr returns
-// true when fed to the callback function (essentially equivalent to Ruby's Array#all)
+// accepts a function as an argument, and returns true only if every element in
+// arr returns true when fed to the callback function (essentially equivalent
+// to Ruby's Array#all) 
 // CALLBACK IS UNARY AND RETURNS A BOOLEAN
 
 arr.some(callback) => BOOLEAN
@@ -28,7 +33,8 @@ arr.some(callback) => BOOLEAN
 
 arr.filter(callback) => NEW ARRAY
 //accepts a function as an argument, returns a new array with only the elements which
-// return true when fed to the callback function (essentially equivalent to Ruby's Array#select)
+// return true when fed to the callback function (essentially equivalent to
+// Ruby's Array#select)
 // CALLBACK IS UNARY AND RETURNS A BOOLEAN
 
 arr.find(callback) => ELEMENT
@@ -37,12 +43,14 @@ arr.find(callback) => ELEMENT
 // CALLBACK IS UNARY AND RETURNS A BOOLEAN
 
 arr.findIndex(callback) => NUMBER (index)
-//exactly like arr.find() but returns the INDEX of the found element, not the element itself
+//exactly like arr.find() but returns the INDEX of the found element, not the
+//element itself
 // CALLBACK IS UNARY AND RETURNS A BOOLEAN
 
 arr.reduce(callback, startingVal) => VALUE (results vary)
 //accepts a callback function with an arity of 2, and an (optional) seed value
-// for the reduction. callback arguments are in the order (acc, el), just like in Ruby's Array#reduce.
+// for the reduction. callback arguments are in the order (acc, el), just like
+// in Ruby's Array#reduce.
 // CALLBACK IS BINARY AND RETURNS A VALUE
 
 arr.reduceRight(callback, startingVal) => VALUE (results vary)
@@ -81,7 +89,8 @@ arr.concat(a, ...) => NEW ARRAY
 arr.slice(begin, [end]) => NEW ARRAY
 // with no arguments, returns shallow copy of arr
 // with one argument, returns copy of array beginning at specified index
-// with two arguments, returns copy of the array between specified indices, where the endpoint is non-inclusive
+// with two arguments, returns copy of the array between specified indices,
+// where the endpoint is non-inclusive
 
 arr.reverse() => MUTATED ARRAY
 // mutates arr, reversing the order of its elements. Returns arr.
@@ -104,7 +113,8 @@ arr.lastIndexOf(val) => NUMBER (index)
 //like arr.indexOf() but taking the last found match, also returns -1 if none found.
 
 arr.join(separator) => STRING
-// aggregates all the elements into a string, with the separator between each. returns the resulting string.
+// aggregates all the elements into a string, with the separator between each.
+// returns the resulting string.
 
 arr.fill(filler, startIdx, endIdx); => MUTATED ARRAY
 // fills all the elements from startIdx to endIdx with filler
