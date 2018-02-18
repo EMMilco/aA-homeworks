@@ -78,13 +78,20 @@ function deepDup(arr) {
 // one step of the process.
 
 function digitalRoot(num) {
-
+  if (num < 10) { return num; }
+  let result = 0;
+  let workingNum = num;
+  while (workingNum > 0) {
+    result += workingNum % 10;
+    workingNum = Math.trunc(workingNum / 10);
+  }
+  return digitalRoot(result);
 }
 
 // Write a method that doubles each element in an array
 
 function doubler(array) {
-
+  return array.map((el) => el*2);
 }
 
 // Write an Array#dups method that will return a hash containing the indices of
@@ -94,14 +101,21 @@ function doubler(array) {
 // [1, 3, 4, 3, 0, 3, 0].dups => { 3 => [1, 3, 5], 0 => [4, 6] }
 
 Array.prototype.dups = function() {
-
-}
+  const results = {};
+  this.forEach((el, i) => {
+    results[el] ? results[el] = results[el].concat(i) : results[el] = [i];
+  });
+  return results;
+};
 
 // return b^n recursively. Your solution should accept negative values
 // for n
 
 function exponent(b, n) {
-
+  if (n === 0) {
+    return 1;
+  }
+  return b * exponent(b, n - 1);
 }
 
 // Write a recursive method that returns the first "num" factorial numbers.
@@ -109,33 +123,60 @@ function exponent(b, n) {
 // is 1!, the 3rd factorial is 2!, etc.
 
 function factorialsRec(num) {
-
+  if (num === 1) { return [1]; }
+  if (num === 2) { return [1,1]; }
+  const prev = factorialsRec(num - 1);
+  return prev.concat(prev[prev.length - 1] * (num - 1));
 }
 
 // Write a method that returns the factors of a number in ascending order.
 
 function factors(num) {
-
+  const results = [];
+  for (var i = 0; i <= num; i++) {
+    if (num % i === 0){results.push(i);}
+  }
+  return results;
 }
+
 
 // Implement a method that finds the sum of the first n
 // fibonacci numbers recursively. Assume n > 0
 
 function fibsSum(n) {
+  return fibs(n).reduce((acc, el) => { return acc + el; });
+}
 
+
+function fibs(n) {
+  if (n === 1) { return [1]; }
+  if (n === 2) { return [1,1]; }
+  const prev = fibs(n-1);
+  return prev.concat(prev[prev.length -2] + prev[prev.length - 1]);
 }
 
 // return the sum of the first n even numbers recursively. Assume n > 0
 
-function firstEvenNumbersSum(n) {
+// function firstEvenNumbersSum(n) {
+//   return (n ** 2) + n;
+// }
 
+function firstEvenNumbersSum(n) {
+  let result = 0;
+  for (var i = 1; i <= n; i++) {
+    result += i*2;
+  }
+  return result;
 }
 
 // write Function.prototype.inherits.
 
-Function.prototype.inherits = function () {
-
-}
+Function.prototype.inherits = function (Parent) {
+  function Surrogate() {}
+  Surrogate.prototype = Parent.prototype;
+  this.prototype = new Surrogate();
+  this.prototype.constructor = this;
+};
 
 // Jumble sort takes a string and an alphabet. It returns a copy of the string
 // with the letters re-ordered according to their positions in the alphabet. If
@@ -146,7 +187,12 @@ Function.prototype.inherits = function () {
 // jumble_sort("hello", ['o', 'l', 'h', 'e']) => 'ollhe'
 
 function jumbleSort(str, alphabet = null) {
-
+  if (alphabet) {
+    str.split("").sort((a,b) => {
+      return Math.sign(alphabet.indexOf(a) - alphabet.indexOf(b));
+    }).join();
+  }
+  return str.split("").sort().join();
 }
 
 // Write a method that returns the median of elements in an array
@@ -167,9 +213,11 @@ Array.prototype.merge = function (arr, func) {
 }
 
 // write Function.prototype.myBind.
-Function.prototype.myBind = function () {
-
-}
+Function.prototype.myBind = function (context, ...bindArguments) {
+  return function (...callArumgents) {
+    return this.apply(context, bindArguments.concat(callArumgents));
+  };
+};
 
 Function.prototype.myCall = function (ctx, ...args) {
 

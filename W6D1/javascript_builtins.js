@@ -86,8 +86,13 @@ arr.slice(begin, [end]) => NEW ARRAY
 arr.reverse() => MUTATED ARRAY
 // mutates arr, reversing the order of its elements. Returns arr.
 
-arr.sort() => MUTATED ARRAY
+arr.sort(callback) => MUTATED ARRAY
 // sorts the array in place (mutating it), and returns sorted array.
+// The callback argument is optional, and determines the sorting order.
+// CALLBACK IS BINARY AND RETURNS A NUMBER
+// -- if callback(a,b) < 0, then a < b
+// -- if callback(a,b) = 0, then a = b
+// -- if callback(a,b) > 0, then a > b
 
 arr.includes(val) => BOOLEAN
 // returns boolean indicating whether the argument is present in arr
@@ -181,6 +186,10 @@ STRING PRIMITIVES
 str.charAt(index) => STRING
 // Takes an index and returns the character at that location. Example:
 // "lightning".charAt(2) => 'g'
+
+str.indexOf(string) => NUMBER (index)
+// Searches str for string and returns the starting index of the first
+// match, if any.  If no matches are found, returns -1.
 
 str.split(separator) => NEW ARRAY
 // Takes an optional separator argument and splits the string into
