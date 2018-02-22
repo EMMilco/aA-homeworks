@@ -241,11 +241,33 @@ Function.prototype.myBind = function (context, ...bindArguments) {
 };
 
 Function.prototype.myCall = function (ctx, ...args) {
-
+  return this.bind(ctx, ...args);
 };
 
 Function.prototype.myCurry = function (numArgs) {
+  const args = [];
+  const curried = (arg) => {
+    args.push(arg);
+    if (args.length >= numArgs) {
+      return this.apply(null, args);
+    } else {
+      return curried;
+    }
+  };
+  return curried;
+};
 
+Function.prototype.myCurry2 = function (numArgs) {
+  const args = [];
+  const curried = (arg) => {
+    args.push(arg);
+    if (args.length >= numArgs) {
+      return this.apply(null, args);
+    } else {
+      return curried;
+    }
+  };
+  return curried;
 };
 
 Array.prototype.myEach = function (func) {
@@ -392,6 +414,7 @@ function primes(num) {
 // Write a monkey patch of quick sort that accepts a callback
 
 Array.prototype.quickSort = function (func) {
+  console.log("quicksort")
   func = func || function (a,b) { return a - b; };
   if (this.length < 2) { return this; }
   const pivot = this[0];
