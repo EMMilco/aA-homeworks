@@ -17,7 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // adding SF places as list items
+  document.querySelectorAll("input [type='submit']").forEach((button) => {
+    button.addEventListener("click", addToList);
+  });
 
+  const addToList = (e) => {
+    const textBox = document.querySelectorAll("input [type='text']")[0];
+    :
   // --- your code here!
 
 
