@@ -1,0 +1,198 @@
+- Howl
+	- App
+		- NavBar
+			- Upgrade Button / About membership button
+			- Medium/Howl logo (centered)
+			- Search pop-out
+			- IF LOGGED IN
+				- Notifications Dropdown
+				- User Control Panel Dropdown
+					- New Article
+					- My Articles Manager Link
+					- My Series Manager Link
+					- My Stats Link
+					- Bookmarks
+					- Manage Follows
+					- Customize Interests
+					- Profile
+					- User Settings
+					- Sign Out
+			- IF NOT LOGGED IN
+				- Sign in Button
+					Opens Welcome Back Popup:
+
+					- Welcome Back Popup
+						- H2 WELCOME BACK
+						- Sign-in blurb
+						- Sign in Buttons
+							- Google
+							- Facebook
+							- Twitter
+							- Email
+								This causes a new form to render, with only an email field. A magic session-initiation link is emailed to the address.
+
+							- Create an Account Link
+								Renders Sign-up Pop-up
+
+				- Get Started Button
+					Renders Sign-up popup
+
+					- H2 JOIN MEDIUM
+					- Sign-up blurb
+					- Sign up Buttons
+						- Google
+						- Facebook
+						- Sign In Link
+							Renders Sign-in Pop-up
+
+		- MainPage
+			- User Show Page (aka “Profile”)
+				- User Profile Page (editable)
+					Just as with the relation between the Article Editor and the Article Show Page, this page is structurally similar to the public profile page, with the following differences:
+
+					- Edit Button, in place of “Follow” Button
+						Opens up Edit View, with the following  editable content:
+
+						- Full Name
+						- Short Bio
+						- Upload Avatar (simple system upload dropdown menu appears)
+						- Save and Cancel Buttons
+				- Author Info Box
+					- Author Name
+					- Medium Join Date
+					- Short Bio
+					- Author Avatar
+					- Stats Bar
+						- Following Count
+						- Follower Count
+					- Social Media Share Buttons
+						- Twitter Share
+						- Facebook Share
+					- Follow Button
+					- Block/Report Dropdown
+					- IF NO CONTENT/ACTIVITY YET: “Full Name hasn’t been active yet… etc.”
+				- Tabs Bar
+					- Profile
+					- Latest
+					- Claps
+					- Highlights
+					- Responses
+				- Content Feed (variable)
+					- If PROFILE — Shows all four feeds.
+					- If LATEST — Shows neverending scroll of past articles
+					- If CLAPS — Shows feed of articles Author has clapped on
+					- If RESPONSES — Shows feed of Comments by Authors
+			- Article Show Page
+				- Article Editor
+					N.B. The Article Editor is structurally nearly identical to the Article Show Page, except for the following additions (and some omissions).
+
+					- Share DropDown in outer header
+					- Publish DropDown in outer header
+					- Audience Dropdown
+					- Author Box (Current User, only Avatar, Name, and “Draft”)
+					- Article Title Prompt
+					- Content Chunks (“paragraphs”) which consist of a few types:
+						USING CONTENTEDITABLE HTML5 PROPERTY
+
+						- Text
+						- Images, with optional captions
+						- Embedded Video
+						- Text Divider
+					- Plus Sign pop-up menu in left margin next to empty, selected paragraph, offering:
+						- Add Image
+						- Search for Unsplash image (in page!)
+						- Embed Video
+						- Embed Tweet
+						- Add Content Divider
+				- Article Header
+					- Author Box
+						- Author Avatar
+						- Author Name
+						- Article Date
+						- Read-Time Estimate
+						- Short Bio
+						- Follow Button
+					- Featured Image  caption)
+					- Article Title (required)
+					- Article Subtitle (optional)
+				- Content Chunks (“paragraphs”) which consist of a few types:
+					- Text
+					- Images, with optional captions
+					- Embedded Video
+					- Text Divider
+				- Article Footer
+					- Claps Blurb (“one clap, two clap, etc.”)
+					- Claps
+						- Clap Button
+						- Clap Count
+					- Footer Right (Buttons Bar)
+						- Add Comment Button (expands form at bottom)
+						- Social Media Share Buttons
+							- Twitter Share
+							- Facebook Share
+						- Bookmark Button
+						- Report/Show-Fewer Dropdown
+					- Author Box
+						- Author Avatar
+						- Author Name
+						- Medium Join Date
+						- Short Bio
+						- Follow Button
+					- Comments Section
+						- “Responses” Heading (Just Text, <h3>)
+						- Comment Form
+							- Form Header
+								- Current User Avatar
+								- Current User Full Name
+							- Composition Area
+								- Series of styled <p> objects, which make up the comment. (No images or other embedded content allowed here.)
+							- Buttons
+								- “Full Screen” — Links to empty new article composition page, with association to original article.
+								- “Publish” — Submits Comment
+						- Comment Feed
+							- Comments
+								- Comment Header
+									- (Optional) Applause from Article Author notice.
+									- Comment Author Box
+										- Author Avatar
+										- Author Fullname/Link
+										- Author Pop-up with Follower Stats & Follow Button
+										- Date of Comment
+								- Comment Body
+									- Series of Paragraphs
+									- “Read More” link after second paragraph, triggers expansion of full comment.
+								- Comment Footer
+									- Clap Button
+									- Clap Count
+									- Bookmark Button
+									- Report/Show-Fewer Dropdown
+								- Show all Responses button, renders all responses.
+			- Article Feed (Front Page)
+				- Topic Channel Ribbon (Just below navbar)
+					- List of topic/channels
+					- Clickable left-right scroll arrows to show rest of list of subscribed channels
+				- Top Stories Grid
+					- “Featured” Stories
+					- Article Stubs, with special block-arrangement.
+				- Extended Feed
+					- Article Stub
+						- Image
+						- Reading Time Estimate
+						- Title, Short Description, Author
+						- Date
+						- Bookmark Button
+						- Report/ShowFewer Dropdown
+						- Channel (Math, Programming, etc.)
+				- Top Articles Sidebar
+					- Header (“Popular on Medium”)
+					- 4 Article Stubs, Ranked (no Images or Short descriptions)
+			- User Settings Page
+				- Settings H1
+				- Prefs Items
+					- Edit Email Button (makes email field editable, shows Cancel and Save buttons)
+					- Notifications Toggle
+					- Social Notifications Toggle
+					- All Email Toggle
+					- Edit Username Button (see Email above)
+					- Deactivate Account
+					- Delete Account
