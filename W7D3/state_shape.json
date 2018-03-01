@@ -1,0 +1,28 @@
+{
+  ents: {
+    users: {
+      id: {
+        id
+        full_name,
+        bio,
+        avatar_url
+        }
+      }
+    articles: {
+      title,
+      author_id,
+      timestamps,
+      featured_image_url
+    },
+    chunks: {
+      article_id,
+      text,
+      url,
+      ord,
+      content_type,
+    }
+
+  },
+  errors: {},
+  ui: {}
+}
