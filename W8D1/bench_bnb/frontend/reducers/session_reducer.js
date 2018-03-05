@@ -1,12 +1,16 @@
 import { merge } from 'lodash';
-import * as APIUtil from '../util/session_api_util';
+import { RECEIVE_CURRENT_USER} from '../actions/session_actions';
 
 const sessionReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type){
-    case APIUtil.RECEIVE_CURRENT_USER:
-      return merge({}, state, action.user);
+    case RECEIVE_CURRENT_USER:
+      const newState = {};
+      newState.user = action.user;
+      return newState;
     default:
       return state;
   }
 };
+
+export default sessionReducer;
